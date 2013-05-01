@@ -1,0 +1,24 @@
+{
+    "name": "boyhagemann/navigation",
+    "description": "",
+    "authors": [
+        {
+            "name": "Boy Hagemann",
+            "email": "boy@swis.nl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",        
+        "vespakoen/menu": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Boyhagemann\\Navigation": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
