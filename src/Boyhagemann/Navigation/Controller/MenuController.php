@@ -13,7 +13,8 @@ class MenuController extends \BaseController {
      */
     public function main()
     {
-        $menu = Menu::handler('main', array('class' => 'nav'))
+        $menu = Menu::handler('main')
+                     ->setAttribute('class', 'nav')
                      ->add('/', '<i class="icon-home"></i> Home')
                      ->add(URL::route('cms.pages.index'), '<i class="icon-file"></i> Pages');        
         
