@@ -2,6 +2,7 @@
 
 namespace Boyhagemann\Navigation\Controller;
 
+use Boyhagemann\Navigation\Model\Navigation;
 use URL, Menu, View;
 
 class NavigationController extends \BaseController {
@@ -13,7 +14,9 @@ class NavigationController extends \BaseController {
      */
     public function index()
     {
-        //
+        $tree = Navigation::roots()->get();
+        
+        return View::make('navigation::navigation.index', compact('tree'));
     }
 
     /**
