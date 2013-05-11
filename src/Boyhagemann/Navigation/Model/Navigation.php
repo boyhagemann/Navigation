@@ -19,6 +19,10 @@ class Navigation extends \Baum\Node
         'title' => 'required'
     );
     
+    /**
+     * 
+     * @param \Boyhagemann\Pages\Model\Page $page
+     */
     static public function createFromPage(Page $page)
     {
         $navigation = new self();

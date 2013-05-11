@@ -41,7 +41,7 @@ class NavigationServiceProvider extends ServiceProvider {
             Menu::handler('main')->add(URL::route('cms.navigation.index'), '<i class="icon-sitemap"></i> Navigation');
             
             
-            
+            // Listen to the page import event
             Event::listen('pages.import.page', function($page) {
                 Model\Navigation::createFromPage($page);
             });
