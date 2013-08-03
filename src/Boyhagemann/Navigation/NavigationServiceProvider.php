@@ -27,7 +27,7 @@ class NavigationServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-            $this->package('navigation'); 
+            $this->package('Boyhagemann\Navigation', 'navigation'); 
 	}
 
 	/**
