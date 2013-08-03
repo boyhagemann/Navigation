@@ -15,6 +15,7 @@ class ContainerController extends CrudController
     public function buildForm(FormBuilder $fb)
     {
         $fb->text('title')->label('Title');
+        $fb->text('name')->label('Name');
     }
 
     /**
@@ -30,7 +31,7 @@ class ContainerController extends CrudController
      */
     public function buildOverview(OverviewBuilder $ob)
     {
-        $ob->fields(array('title'));
+        $ob->fields(array('title', 'name'));
     }
 
 

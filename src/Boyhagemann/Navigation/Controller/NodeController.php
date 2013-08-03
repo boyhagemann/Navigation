@@ -25,7 +25,13 @@ class NodeController extends CrudController
      */
     public function buildModel(ModelBuilder $mb)
     {
-        $mb->name('Navigation\Node')->table('navigation_node');
+        $mb->name('Navigation\Node')->table('navigation_node')->parentClass('Baum\Node');
+        
+        $table = $mb->getBlueprint();
+        $table->integer('parent_id')->nullable();
+        $table->integer('lft')->nullable();
+        $table->integer('rgt')->nullable();
+        $table->integer('depth')->nullable();
     }
 
     /**
