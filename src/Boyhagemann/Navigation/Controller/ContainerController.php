@@ -23,7 +23,7 @@ class ContainerController extends CrudController
      */
     public function buildModel(ModelBuilder $mb)
     {
-        $mb->name('Navigation\Container')->table('navigation_container');
+        $mb->name('Boyhagemann\Navigation\Model\Container')->table('navigation_container');
     }
 
     /**

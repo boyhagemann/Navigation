@@ -2,7 +2,7 @@
 
 namespace Boyhagemann\Navigation\Controller;
 
-use Navigation\Node;
+use Boyhagemann\Navigation\Model\Node;
 use Config, App;
 
 class MenuController extends \BaseController

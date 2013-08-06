@@ -17,7 +17,7 @@ class NodeController extends CrudController
     {
         $fb->text('title')->label('Title');
         $fb->text('route')->label('Route');
-        $fb->modelSelect('container_id')->alias('container')->label('Container')->model('Navigation\Container');
+        $fb->modelSelect('container_id')->alias('container')->label('Container')->model('Boyhagemann\Navigation\Model\Container');
     }
 
     /**
@@ -25,7 +25,7 @@ class NodeController extends CrudController
      */
     public function buildModel(ModelBuilder $mb)
     {
-        $mb->name('Navigation\Node')->table('navigation_node')->parentClass('Baum\Node');
+        $mb->name('Boyhagemann\Navigation\Model\Node')->table('navigation_node')->parentClass('Baum\Node');
         
         $table = $mb->getBlueprint();
         $table->integer('parent_id')->nullable();
