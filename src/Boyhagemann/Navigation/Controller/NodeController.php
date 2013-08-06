@@ -39,7 +39,7 @@ class NodeController extends CrudController
      */
     public function buildOverview(OverviewBuilder $ob)
     {
-        $ob->fields(array('title', 'route', 'layout_id'));
+        $ob->fields(array('title', 'route', 'container_id'));
     }
 
 
