@@ -14,8 +14,8 @@ class MenuController extends \BaseController
         $menu = App::make('Menu\Menu');
         $this->menu = $menu->handler('admin', array('class' => 'nav navbar-nav'));
         
-        $nodes = Node::whereDepth(0)->whereContainerId(1)->get(); 
-        
+        $nodes = Node::whereDepth(0)->whereContainerId(1)->get();
+
         foreach($nodes as $node) {
             $this->buildMenu($node);
         }
