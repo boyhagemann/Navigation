@@ -9,7 +9,7 @@ use Boyhagemann\Overview\OverviewBuilder;
 use DB;
 
 class NodeController extends CrudController
-{    
+{
     /**
      * @param FormBuilder $fb
      */
@@ -42,6 +42,16 @@ class NodeController extends CrudController
         $ob->fields(array('title', 'route', 'container_id'));
     }
 
+
+	/**
+	 * @return array
+	 */
+	public function config()
+	{
+		return array(
+			'title' => 'Node',
+		);
+	}
 
 }
 

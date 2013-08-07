@@ -8,7 +8,7 @@ use Boyhagemann\Model\ModelBuilder;
 use Boyhagemann\Overview\OverviewBuilder;
 
 class ContainerController extends CrudController
-{    
+{
     /**
      * @param FormBuilder $fb
      */
@@ -34,6 +34,16 @@ class ContainerController extends CrudController
         $ob->fields(array('title', 'name'));
     }
 
+
+	/**
+	 * @return array
+	 */
+	public function config()
+	{
+		return array(
+			'title' => 'Container',
+		);
+	}
 
 }
 
