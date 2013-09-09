@@ -14,7 +14,7 @@ class MenuController extends \BaseController
         $menu = App::make('Menu\Menu');
         $this->menu = $menu->handler('admin', array('class' => 'nav navbar-nav'));
         
-        $nodes = Node::whereDepth(0)->whereContainerId(1)->get();
+        $nodes = Node::whereDepth(0)->whereContainerId(1)->with('page')->get();
 
         foreach($nodes as $node) {
             $this->buildMenu($node);
@@ -25,7 +25,12 @@ class MenuController extends \BaseController
     
     public function buildMenu($node)
     {
-        $this->menu->add(url($node->route), $node->title);
+		if($node->page) {
+        	$this->menu->add(url($node->page->route), $node->title);
+		}
+		else {
+			$this->menu->add('', $node->title);
+		}
     }
 
 }

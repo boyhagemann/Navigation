@@ -16,7 +16,8 @@ class Node extends \Baum\Node
     protected $fillable = array(
         'title',
         'route',
-        'container_id'
+        'container_id',
+		'page_id',
         );
 
     /**
@@ -27,6 +28,13 @@ class Node extends \Baum\Node
         return $this->belongsTo('Boyhagemann\Navigation\Model\Container');
     }
 
+	/**
+	 * @return \Boyhagemann\Pages\Model\Page
+	 */
+	public function page()
+	{
+		return $this->belongsTo('Boyhagemann\Pages\Model\Page');
+	}
 
 }
 

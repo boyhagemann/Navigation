@@ -17,7 +17,8 @@ class NavigationServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot()
-	{   
+	{
+		$this->package('navigation', 'navigation');
 	}
 
 	/**
@@ -27,7 +28,7 @@ class NavigationServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-            $this->package('Boyhagemann\Navigation', 'navigation'); 
+		$this->package('navigation', 'navigation');
 	}
 
 	/**
@@ -37,7 +38,7 @@ class NavigationServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return array('navigation');
 	}
 
 }

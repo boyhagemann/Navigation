@@ -6,17 +6,34 @@ use Boyhagemann\Crud\CrudController;
 use Boyhagemann\Form\FormBuilder;
 use Boyhagemann\Model\ModelBuilder;
 use Boyhagemann\Overview\OverviewBuilder;
-use DB;
+use Boyhagemann\Pages\Model\Page;
+use DB, View;
 
 class NodeController extends CrudController
 {
+	public function tree()
+	{
+		$containers = array();
+		$nodes = $this->getModel()->ancestorsAndSelf()->with('page', 'container')->get();
+
+		foreach($nodes as $node) {
+			$containers[$node->container->id]['tree'][] = $node;
+		}
+
+		foreach(\App::make('Boyhagemann\Navigation\Model\Container')->all() as $container) {
+			$containers[$container->id] += $container->toArray();
+		}
+
+		return View::make('navigation::node.tree', compact('containers'));
+	}
+
     /**
      * @param FormBuilder $fb
      */
     public function buildForm(FormBuilder $fb)
     {
         $fb->text('title')->label('Title');
-        $fb->text('route')->label('Route');
+        $fb->modelSelect('page_id')->alias('page')->label('Page')->model('Boyhagemann\Pages\Model\Page');
         $fb->modelSelect('container_id')->alias('container')->label('Container')->model('Boyhagemann\Navigation\Model\Container');
     }
 
