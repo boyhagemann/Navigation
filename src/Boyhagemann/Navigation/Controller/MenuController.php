@@ -25,12 +25,38 @@ class MenuController extends \BaseController
     
     public function buildMenu($node)
     {
-		if($node->page) {
-        	$this->menu->add(url($node->page->route), $node->title);
-		}
-		else {
-			$this->menu->add('', $node->title);
-		}
+        $linkAttribs = array();
+        $listAttribs = array();
+        $title = $node->title;
+        $sub = null;
+        
+        if($node->children->count()) {
+            $sub = App::make('Menu\Menu')->items('test', array('class' => 'dropdown-menu'));
+            foreach($node->children as $child) {
+
+                if($child->page) {
+                    $sub->add(url($child->page->route), $child->title);
+                }
+                else {
+                    $sub->add('', $child->title);
+                }
+            }
+            $title = $node->title .= ' <b class="caret"></b>';
+            $linkAttribs = array(
+                'class' => 'dropdown-toggle',
+                'data-toggle' => 'dropdown',
+            );
+            $listAttribs = array(
+                'class' => 'dropdown',
+            );
+        }
+        
+        if($node->page) {
+            $this->menu->add(url($node->page->route), $title, $sub, $linkAttribs, $listAttribs);
+        }
+        else {
+            $this->menu->add('', $title, $sub, $linkAttribs, $listAttribs);
+        }
     }
 
 }
