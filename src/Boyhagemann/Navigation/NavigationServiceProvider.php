@@ -19,6 +19,8 @@ class NavigationServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('navigation', 'navigation');
+
+		$this->app->register('Menu\MenuServiceProvider');
 	}
 
 	/**

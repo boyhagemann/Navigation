@@ -2,6 +2,7 @@
 
 namespace Boyhagemann\Navigation\Controller;
 
+use Boyhagemann\Navigation\Model\Container;
 use Boyhagemann\Navigation\Model\Node;
 use Config, App;
 
@@ -9,12 +10,14 @@ class MenuController extends \BaseController
 {
     protected $menu;
     
-    public function admin()
+    public function container($container)
     {
         $menu = App::make('Menu\Menu');
-        $this->menu = $menu->handler('admin', array('class' => 'nav navbar-nav'));
-        
-        $nodes = Node::whereDepth(0)->whereContainerId(1)->with('page')->get();
+        $this->menu = $menu->handler($container, array('class' => 'nav navbar-nav'));
+
+		$container = Container::whereName($container)->first();
+
+        $nodes = Node::whereDepth(0)->whereContainerId($container->id)->with('page')->get();
 
         foreach($nodes as $node) {
             $this->buildMenu($node);
