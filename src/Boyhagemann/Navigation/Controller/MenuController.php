@@ -4,21 +4,19 @@ namespace Boyhagemann\Navigation\Controller;
 
 use Boyhagemann\Navigation\Model\Container;
 use Boyhagemann\Navigation\Model\Node;
-use Config, App;
+use Boyhagemann\Pages\Model\Page;
+use Config, App, Route;
 
 class MenuController extends \BaseController
 {
     protected $menu;
     
-    public function container($container)
+    public function container($container, $class = 'nav navbar-nav')
     {
-        $menu = App::make('Menu\Menu');
-        $this->menu = $menu->handler($container, array('class' => 'nav navbar-nav'));
-
-		$container = Container::whereName($container)->first();
-
-        $nodes = Node::whereDepth(0)->whereContainerId($container->id)->with('page')->get();
-
+        $this->menu = App::make('Menu\Menu')->handler($container, compact('class'));
+                
+        $nodes = Node::getChildrenByRouteAndContainer(Route::currentRouteName(), $container);
+              
         foreach($nodes as $node) {
             $this->buildMenu($node);
         }

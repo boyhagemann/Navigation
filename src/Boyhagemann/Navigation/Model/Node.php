@@ -2,6 +2,8 @@
 
 namespace Boyhagemann\Navigation\Model;
 
+use Illuminate\Database\Eloquent\Collection;
+
 class Node extends \Baum\Node
 {
 
@@ -16,8 +18,8 @@ class Node extends \Baum\Node
     protected $fillable = array(
         'title',
         'container_id',
-		'page_id',
-		'params',
+        'page_id',
+        'params',
         );
 
     /**
@@ -28,13 +30,47 @@ class Node extends \Baum\Node
         return $this->belongsTo('Boyhagemann\Navigation\Model\Container');
     }
 
-	/**
-	 * @return \Boyhagemann\Pages\Model\Page
-	 */
-	public function page()
-	{
-		return $this->belongsTo('Boyhagemann\Pages\Model\Page');
-	}
+    /**
+     * @return \Boyhagemann\Pages\Model\Page
+     */
+    public function page()
+    {
+            return $this->belongsTo('Boyhagemann\Pages\Model\Page');
+    }
 
+    /**
+     * 
+     * @param type $routeName
+     * @param type $containerName
+     * @return Node
+     */
+    static public function findOneByRouteAndContainer($routeName, $containerName)
+    {        
+        $qb = self::query();
+        $qb->join('pages', 'navigation_nodes.page_id', '=', 'pages.id')
+           ->join('navigation_containers', 'navigation_nodes.container_id', '=', 'navigation_containers.id')
+           ->where('navigation_containers.name', '=', $containerName)
+           ->where('pages.alias', '=', $routeName)
+           ->select('navigation_nodes.*');
+        
+        return $qb->first();
+    }
+    
+    /**
+     * 
+     * @param type $routeName
+     * @param type $containerName
+     * @return Collection
+     */
+    static public function getChildrenByRouteAndContainer($routeName, $containerName)
+    {
+        $node = self::findOneByRouteAndContainer($routeName, $containerName);
+        
+        if(!$node) {
+            return new Collection;
+        }
+        
+        return $node->children()->get();
+    }
 }
 
