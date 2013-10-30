@@ -5,7 +5,7 @@ namespace Boyhagemann\Navigation\Model;
 class Container extends \Eloquent
 {
 
-    protected $table = 'navigation_container';
+    protected $table = 'navigation_containers';
 
     public $timestamps = false;
 

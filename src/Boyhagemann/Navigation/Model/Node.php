@@ -5,7 +5,7 @@ namespace Boyhagemann\Navigation\Model;
 class Node extends \Baum\Node
 {
 
-    protected $table = 'navigation_node';
+    protected $table = 'navigation_nodes';
 
     public $timestamps = false;
 
@@ -15,9 +15,9 @@ class Node extends \Baum\Node
 
     protected $fillable = array(
         'title',
-        'route',
         'container_id',
 		'page_id',
+		'params',
         );
 
     /**
