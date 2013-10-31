@@ -37,14 +37,14 @@ class NavigationServiceProvider extends ServiceProvider {
                         $left = Node::create(array(
                             'title' => $page->title,
                             'page_id' => $page->id,
-                            'container_id' => \ContainersTableSeeder::LEFT,
+                            'container_id' => \NavigationContainersTableSeeder::LEFT,
                         ));
 
                         // Right menu root node
                         $right = Node::create(array(
                             'title' => $page->title,
                             'page_id' => $page->id,
-                            'container_id' => \ContainersTableSeeder::RIGHT,
+                            'container_id' => \NavigationContainersTableSeeder::RIGHT,
                         ));
 
                         $base = substr($page->alias, 0, strrpos($page->alias, '.'));
