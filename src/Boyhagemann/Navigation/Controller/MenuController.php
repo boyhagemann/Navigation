@@ -26,7 +26,10 @@ class MenuController extends \BaseController
     
     public function buildMenu($node)
     {
-        $linkAttribs = array();
+        $linkAttribs = array(
+			'class' => $node->link_class,
+			'role' => 'button',
+		);
         $listAttribs = array();
         $title = $node->title;
         $sub = null;
