@@ -17,6 +17,10 @@ class MenuController extends \BaseController
                 
         $nodes = Node::getChildrenByRouteAndContainer(Route::currentRouteName(), $container);
               
+        if(!$nodes->count()) {
+            return;
+        }
+        
         foreach($nodes as $node) {
             $this->buildMenu($node);
         }
