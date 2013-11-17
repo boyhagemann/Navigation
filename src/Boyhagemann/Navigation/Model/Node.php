@@ -17,6 +17,7 @@ class Node extends \Baum\Node
 
     protected $fillable = array(
         'title',
+        'description',
         'container_id',
         'page_id',
 		'icon_class',
