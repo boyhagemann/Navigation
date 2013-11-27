@@ -21,6 +21,7 @@ class Node extends \Baum\Node
         'container_id',
         'page_id',
 		'icon_class',
+		'color',
         'params',
         );
 

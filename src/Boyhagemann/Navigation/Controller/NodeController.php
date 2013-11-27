@@ -36,6 +36,7 @@ class NodeController extends CrudController
         $fb->modelSelect('page_id')->alias('page')->label('Page')->model('Boyhagemann\Pages\Model\Page');
         $fb->modelSelect('container_id')->alias('container')->label('Container')->model('Boyhagemann\Navigation\Model\Container');
 		$fb->text('icon_class')->label('Icon class');
+		$fb->text('color')->label('Hex color');
     }
 
     /**
