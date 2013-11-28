@@ -20,8 +20,6 @@ class Node extends \Baum\Node
         'description',
         'container_id',
         'page_id',
-		'icon_class',
-		'color',
         'params',
         );
 
@@ -56,20 +54,29 @@ class Node extends \Baum\Node
 		$this->attributes['params'] = serialize($value);
 	}
 
-
 	/**
 	 *
-	 * @param type $containerName
-	 * @return Node
+	 * @param string $containerName
+	 * @return Illuminate\Database\Eloquent\Builder
 	 */
-	static public function getChildrenByContainer($containerName)
+	static public function getChildrenByContainerQuery($containerName)
 	{
 		$qb = self::query();
 		$qb->join('navigation_containers', 'navigation_nodes.container_id', '=', 'navigation_containers.id')
 			->where('navigation_containers.name', '=', $containerName)
 			->select('navigation_nodes.*');
 
-		return $qb->with('page')->get();
+		return $qb->with('page');
+	}
+
+	/**
+	 *
+	 * @param string $containerName
+	 * @return Node
+	 */
+	static public function getChildrenByContainer($containerName)
+	{
+		return static::getChildrenByContainerQuery($containerName)->get();
 	}
 
     /**
